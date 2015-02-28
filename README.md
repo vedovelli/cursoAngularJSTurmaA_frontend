@@ -1,12 +1,14 @@
-# chet
+# Chet Baker 1.0
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+Primeira aula do curso de AngularJS pelo Edukee, turma A.
+http://www.edukee.com/pt/curso/angularjs-desenvolvimento-profissional-de-web-applications/turma-a/2237328522
 
-## Build & development
+## Instruções
 
-Run `grunt` for building and `grunt serve` for preview.
+Com as ferramentas instaladas (Node.js, NPM, Grunt, Bower e Yeoman), navegue pelo terminal até a pasta do projeto e rode os seguintes comandos:
 
-## Testing
+. bower install (instalará as bibliotecas desenvolvimento front end: Angular, Bootstrap, jQuery)
 
-Running `grunt test` will run the unit tests with karma.
+. npm install (instalará as ferramentas de desenvolvimento: Grunt e plugins)
+
+. grunt serve para servir o projeto
