@@ -10,12 +10,26 @@
 angular.module('chetApp')
   .service('UserService', function ($http) {
 
-    this.getUsers = function(callback)
+    var apiURL = 'http://curso-angular-api.app/api';
+
+    this.getUsers = function(config)
     {
-      $http.get('http://curso-angular-api.app/api/user').success(function(data)
+      return $http.get(apiURL + '/user?limit='+encodeURIComponent(config.limit)+'&page='+encodeURIComponent(config.page)+'&cities='+encodeURIComponent(config.cities)+'&orderBy='+encodeURIComponent(config.orderBy));
+    };
+
+    this.saveUser = function(userData)
+    {
+      if(userData.id === undefined)
       {
-        callback(data);
-      });
+        return $http.post(apiURL + '/user', userData);
+      } else {
+        return $http.put(apiURL + '/user/' + userData.id, userData);
+      }
+    };
+
+    this.removeUser = function(userData)
+    {
+      return $http.delete(apiURL + '/user/' + userData.id);
     };
 
   });

@@ -1,3 +1,66 @@
+/**
+* Chet Baker styles START
+*/
+
+.chet-users-list{
+  min-height: 500px !important;
+}
+
+.chet-user-item{
+  cursor: pointer;
+}
+
+.chet-user-card-body{
+  height: 145px;
+}
+
+.chet-user-controls.ng-hide-add {
+  -webkit-animation: fadeOut 0.6s;
+  -moz-animation: fadeOut 0.6s;
+  -o-animation: fadeOut 0.6s;
+  animation: fadeOut 0.6s;
+}
+
+.chet-user-controls.ng-hide-remove{
+  -webkit-animation: flipInX 0.6s;
+  -moz-animation: flipInX 0.6s;
+  -o-animation: flipInX 0.6s;
+  animation: flipInX 0.6s;
+}
+
+.chet-container-btn-novo{
+  padding-top: 25px;
+}
+
+.chet-user-form{
+  position: relative;
+}
+
+.chet-user-form-image{
+  position: absolute;
+  right: 0; top: 50px;
+  border-radius: 10px;
+}
+
+.chet-gravatar{
+  border-radius: 10px;
+}
+
+.che-submit-btn{
+  position: absolute;
+  bottom: -65px;
+  right: 0;
+}
+
+.modal-dialog{
+  width: 65%;
+  margin: 160px auto;
+}
+
+/**
+* Chet Baker styles END
+*/
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

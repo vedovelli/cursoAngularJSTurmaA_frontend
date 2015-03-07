@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="filtroCidades" class="control-label">Filtre por cidade</label>
+      <select name="filtroCidades" multiple id="filtroCidades" ng-model="filterCities" chet-select2
+      source="http://curso-angular-api.app/api/cities" property="city"
+      style="width: 100%;"></select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="ordenacao" class="control-label">Ordenar por</label>
+      <select name="ordenacao" ng-model="filterOrderBy" id="ordenacao" chet-select2 allowClear="true" style="width: 100%;">
+        <option selected></option>
+        <option value="fullname|asc">por Nome ascendente</option>
+        <option value="fullname|desc">por Nome descendente</option>
+        <option value="updated_at|asc">por Atualização ascendente</option>
+        <option value="updated_at|desc">por Atualização descendente</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-2">
+    <button class="btn btn-primary" style="margin-top:25px" data-toggle="modal" data-target="#modalUsuarios" ng-click="new()">Adicionar Usuário</button>
+  </div>
+</div>

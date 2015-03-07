@@ -9,5 +9,8 @@
  */
 angular.module('chetApp')
   .controller('MainCtrl', ['$scope', 'AuthService', function ($scope, auth) {
-    auth.isLoggedIn({attempt: '/'});
+    auth.isLoggedIn({attempt: '/'}, function()
+    {
+      
+    });
   }]);

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="bower_components/morrisjs/morris.css" />
     <link rel="stylesheet" href="bower_components/datatables-responsive/css/dataTables.responsive.css" />
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
+    <link rel="stylesheet" href="bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="bower_components/select2-bootstrap3-css/select2-bootstrap.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -46,7 +48,7 @@
             </div>
             <!-- /.navbar-header -->
 
-            <ul class="nav navbar-top-links navbar-right">
+            <ul ng-show="token != undefined" class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -256,7 +258,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div ng-if="token != undefined" class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -333,6 +335,7 @@
     <script src="bower_components/morrisjs/morris.js"></script>
     <script src="bower_components/datatables-responsive/js/dataTables.responsive.js"></script>
     <script src="bower_components/flot.tooltip/js/jquery.flot.tooltip.js"></script>
+    <script src="bower_components/select2/select2.js"></script>
     <!-- endbower -->
 
     <!-- endbuild -->
@@ -348,6 +351,9 @@
         <script src="scripts/controllers/products.js"></script>
         <script src="scripts/controllers/terms.js"></script>
         <script src="scripts/services/userservice.js"></script>
+        <script src="scripts/directives/chetselect2.js"></script>
+        <script src="scripts/directives/chetusercard.js"></script>
+        <script src="scripts/services/cityservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>

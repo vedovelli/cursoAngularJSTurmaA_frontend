@@ -10,7 +10,10 @@
 angular.module('chetApp')
   .controller('ProductsCtrl', ['$scope', 'AuthService', function ($scope, auth) {
 
-    auth.isLoggedIn({attempt: 'products'});
+    auth.isLoggedIn({attempt: 'products'}, function()
+    {
+      
+    });
 
     //...
 

@@ -12,9 +12,10 @@ angular.module('chetApp')
 
     $scope.email = 'vedovelli@gmail.com';
     $scope.password = '123456';
+    $scope.remember = true;
     $scope.login = function()
     {
-      auth.login($scope.email, $scope.password);
+      auth.login($scope.email, $scope.password, $scope.remember);
     };
 
   }]);
