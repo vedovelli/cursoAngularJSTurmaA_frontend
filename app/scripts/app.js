@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+  .constant('API_URL', 'http://curso-angular-api.app/api')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -25,6 +26,14 @@ angular
       })
       .when('/users', {
         templateUrl: 'views/users.html',
+        controller: 'UsersCtrl'
+      })
+      .when('/users/new', {
+        templateUrl: 'views/users-form.html',
+        controller: 'UsersCtrl'
+      })
+      .when('/users/edit/:id', {
+        templateUrl: 'views/users-form.html',
         controller: 'UsersCtrl'
       })
       .when('/login', {

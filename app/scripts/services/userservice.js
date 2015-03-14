@@ -8,28 +8,32 @@
  * Service in the chetApp.
  */
 angular.module('chetApp')
-  .service('UserService', function ($http) {
+  .service('UserService', ['$http', 'API_URL', function ($http, API_URL) {
 
-    var apiURL = 'http://curso-angular-api.app/api';
 
     this.getUsers = function(config)
     {
-      return $http.get(apiURL + '/user?limit='+encodeURIComponent(config.limit)+'&page='+encodeURIComponent(config.page)+'&cities='+encodeURIComponent(config.cities)+'&orderBy='+encodeURIComponent(config.orderBy));
+      return $http.get(API_URL + '/user?limit='+encodeURIComponent(config.limit)+'&page='+encodeURIComponent(config.page)+'&cities='+encodeURIComponent(config.cities)+'&orderBy='+encodeURIComponent(config.orderBy));
     };
 
     this.saveUser = function(userData)
     {
       if(userData.id === undefined)
       {
-        return $http.post(apiURL + '/user', userData);
+        return $http.post(API_URL + '/user', userData);
       } else {
-        return $http.put(apiURL + '/user/' + userData.id, userData);
+        return $http.put(API_URL + '/user/' + userData.id, userData);
       }
     };
 
     this.removeUser = function(userData)
     {
-      return $http.delete(apiURL + '/user/' + userData.id);
+      return $http.delete(API_URL + '/user/' + userData.id);
     };
 
-  });
+    this.getUser = function(id)
+    {
+      return $http.get(API_URL+'/user/'+id);
+    };
+
+  }]);

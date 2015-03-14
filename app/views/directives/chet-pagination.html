@@ -1,0 +1,19 @@
+<p>Mostrando <strong>{{pagination.from}}</strong> de <strong>{{pagination.to}}</strong> registros. Total de <strong>{{pagination.total}}</strong>.</p>
+<nav>
+  <ul class="pagination">
+    <!-- Botao anterior -->
+    <li ng-class="{disabled: currentPage == 1}">
+      <a href ng-click="prevPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li ng-repeat="page in range track by $index" ng-class="{active: page == currentPage, disabled: page == '...'}"><a href ng-click="setPage()">{{page}}</a></li>
+
+    <!-- Botao proximo -->
+    <li ng-class="{disabled: currentPage == pagination.last_page}">
+      <a href ng-click="nextPage()" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>

@@ -3,94 +3,82 @@
       <h1 class="page-header">
         <i class="fa fa-users"></i>
         Usuários
+        <img src="images/spinner.gif" width="35" height="35" ng-show="loading">
       </h1>
   </div>
 </div>
 
 <!--Modal-->
-<div class="modal fade" id="modalUsuarios">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Gerenciar Usuários</h4>
+<!--
+<chet-modal title="Gerenciamento de Usuários de qualquer outra coisa" close-button="false">
+  <form name="userForm" id="userForm" method="post" class="chet-user-form" ng-submit="save()" novalidate>
+
+      <img ng-src="{{user.gravatar}}" alt="{{user.fullname}}" width="200" class="chet-user-form-image" ng-if="user.gravatar">
+      <img src="images/placeholder.png" width="200" class="chet-user-form-image" ng-if="!user.gravatar">
+
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="txtFullname">Nome Completo</label>
+            <input type="text" autocomplete="off" class="form-control" name="fullname" id="txtFullname" required ng-model="user.fullname" autofocus>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="txtEmail">E-mail</label>
+            <input type="email" autocomplete="off" class="form-control" name="email" id="txtEmail" ng-model="user.email" required>
+            <span class="help-block"><small>É preciso ser único no sistema</small></span>
+          </div>
+        </div>
+        <div class="col-md-offset-3"></div>
       </div>
-      <div class="modal-body">
-
-        <form name="userForm" id="userForm" method="post" class="chet-user-form" ng-submit="save()" novalidate>
-
-            <img ng-src="{{user.gravatar}}" alt="{{user.fullname}}" width="200" class="chet-user-form-image" ng-if="user.gravatar">
-            <img src="images/placeholder.png" width="200" class="chet-user-form-image" ng-if="!user.gravatar">
-
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label for="txtFullname">Nome Completo</label>
-                  <input type="text" autocomplete="off" class="form-control" name="fullname" id="txtFullname" required ng-model="user.fullname" autofocus>
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="txtEmail">E-mail</label>
-                  <input type="email" autocomplete="off" class="form-control" name="email" id="txtEmail" ng-model="user.email" required>
-                  <span class="help-block"><small>É preciso ser único no sistema</small></span>
-                </div>
-              </div>
-              <div class="col-md-offset-3"></div>
-            </div>
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label for="txtUsername">Usuário</label>
-                  <input type="text" autocomplete="off" class="form-control" name="username" id="txtUsername" ng-model="user.username" required>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label for="txtPassword">Senha</label>
-                  <input type="password" class="form-control" name="password" id="txtPassword" ng-model="user.password" ng-required="user.id == undefined">
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <label for="txtPasswordConfirmation">Confirmação de Senha</label>
-                  <input type="password" class="form-control" name="password_confirmation" id="txtPasswordConfirmation" ng-model="user.password_confirmation" ng-required="user.id == undefined">
-                </div>
-              </div>
-              <div class="col-md-offset-3"></div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label for="txtCep">CEP</label>
-                  <input type="text" autocomplete="off" class="form-control" name="zip" id="txtCep" ng-model="user.zip" required>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label for="txtCidade">Cidade</label>
-                  <input type="text" autocomplete="off" class="form-control" name="city" id="txtCidade" ng-model="user.city" required>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label for="txtEstado">UF</label>
-                  <input type="text" autocomplete="off" class="form-control" name="state" id="txtEstado" ng-model="user.state" required>
-                </div>
-              </div>
-              <div class="col-md-offset-3"></div>
-            </div>
-            <button type="submit" class="btn btn-primary chet-submit-btn">Salvar</button>
-        </form>
-
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="txtUsername">Usuário</label>
+            <input type="text" autocomplete="off" class="form-control" name="username" id="txtUsername" ng-model="user.username" required>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="txtPassword">Senha</label>
+            <input type="password" class="form-control" name="password" id="txtPassword" ng-model="user.password" ng-required="user.id == undefined">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="txtPasswordConfirmation">Confirmação de Senha</label>
+            <input type="password" class="form-control" name="password_confirmation" id="txtPasswordConfirmation" ng-model="user.password_confirmation" ng-required="user.id == undefined">
+          </div>
+        </div>
+        <div class="col-md-offset-3"></div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+      <div class="row">
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="txtCep">CEP</label>
+            <input type="text" autocomplete="off" class="form-control" name="zip" id="txtCep" ng-model="user.zip" required>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="form-group">
+            <label for="txtCidade">Cidade</label>
+            <input type="text" autocomplete="off" class="form-control" name="city" id="txtCidade" ng-model="user.city" required>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <label for="txtEstado">UF</label>
+            <input type="text" autocomplete="off" class="form-control" name="state" id="txtEstado" ng-model="user.state" required>
+          </div>
+        </div>
+        <div class="col-md-offset-3"></div>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+      <button type="submit" class="btn btn-primary chet-submit-btn">Salvar</button>
+  </form>
+</chet-modal>
+-->
 
 <!--Filtros-->
 <ng-include src="'views/partials/filter.html'"></ng-include>
@@ -100,4 +88,8 @@
   <div class="col-md-4" ng-repeat="user in users">
     <chet-user-card></chet-user-card>
   </div>
+</div>
+
+<div class="text-center">
+  <chet-pagination></chet-pagination>
 </div>

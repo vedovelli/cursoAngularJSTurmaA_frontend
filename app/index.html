@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
     <link rel="stylesheet" href="bower_components/select2/select2.css" />
     <link rel="stylesheet" href="bower_components/select2-bootstrap3-css/select2-bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -294,7 +295,7 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-              <div ng-view=""></div>
+              <div ng-view="" class="chet-main-container"></div>
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
@@ -354,6 +355,11 @@
         <script src="scripts/directives/chetselect2.js"></script>
         <script src="scripts/directives/chetusercard.js"></script>
         <script src="scripts/services/cityservice.js"></script>
+        <script src="scripts/directives/chetmodal.js"></script>
+        <script src="scripts/services/modalservice.js"></script>
+        <script src="scripts/services/chetmodalservice.js"></script>
+        <script src="scripts/services/paginationservice.js"></script>
+        <script src="scripts/directives/chetpagination.js"></script>
         <!-- endbuild -->
 </body>
 </html>
