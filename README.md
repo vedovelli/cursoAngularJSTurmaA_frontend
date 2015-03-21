@@ -1,6 +1,6 @@
 # Chet Baker 1.0
 
-Primeira aula do curso de AngularJS pelo Edukee, turma A.
+Curso de AngularJS pelo Edukee, turma A.
 http://www.edukee.com/pt/curso/angularjs-desenvolvimento-profissional-de-web-applications/turma-a/2237328522
 
 ## Instruções
