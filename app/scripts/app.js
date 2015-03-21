@@ -15,9 +15,11 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngFileUpload'
   ])
-  .constant('API_URL', 'http://curso-angular-api.app/api')
+  .constant('API_URL', 'http://cursoangular.vedovelli.com.br/api')
+  // .constant('API_URL', 'http://curso-angular-api.app/api')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -47,6 +49,10 @@ angular
       .when('/terms', {
         templateUrl: 'views/terms.html',
         controller: 'TermsCtrl'
+      })
+      .when('/images', {
+        templateUrl: 'views/images.html',
+        controller: 'ImagesCtrl'
       })
       .otherwise({
         redirectTo: '/'

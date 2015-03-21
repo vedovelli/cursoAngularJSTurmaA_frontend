@@ -10,6 +10,10 @@
 angular.module('chetApp')
   .service('UserService', ['$http', 'API_URL', function ($http, API_URL) {
 
+    this.getGravatar = function(email)
+    {
+      return $http.get(API_URL+'/gravatar/'+email);
+    };
 
     this.getUsers = function(config)
     {

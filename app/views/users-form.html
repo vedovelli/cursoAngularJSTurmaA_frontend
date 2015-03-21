@@ -7,22 +7,30 @@
   </div>
 </div>
 
-<form name="userForm" id="userForm" method="post" class="chet-user-form" ng-submit="save()" novalidate>
+<div class="alert alert-danger" ng-show="serverSideValidationErrors != undefined">
+  <button type="button" class="close" ng-click="serverSideValidationErrors = undefined" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div ng-bind-html="serverSideValidationErrors"></div>
+</div>
+
+<form name="userForm" id="userForm" method="post" class="chet-user-form" ng-submit="save(userForm)" novalidate>
 
     <img ng-src="{{user.gravatar}}" alt="{{user.fullname}}" width="200" class="chet-user-form-image" ng-if="user.gravatar">
     <img src="images/placeholder.png" width="200" class="chet-user-form-image" ng-if="!user.gravatar">
 
     <div class="row">
       <div class="col-md-5">
-        <div class="form-group">
-          <label for="txtFullname">Nome Completo</label>
+        <div class="form-group" ng-class="{'has-error': userForm.fullname.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtFullname">Nome Completo</label>
           <input type="text" autocomplete="off" class="form-control" name="fullname" id="txtFullname" required ng-model="user.fullname" autofocus>
+          <span class="help-block" ng-show="userForm.fullname.$invalid && userForm.$submitted"><small>O nome completo é obrigatório</small></span>
         </div>
       </div>
       <div class="col-md-4">
-        <div class="form-group">
-          <label for="txtEmail">E-mail</label>
-          <input type="email" autocomplete="off" class="form-control" name="email" id="txtEmail" ng-model="user.email">
+        <div class="form-group" ng-class="{'has-error': userForm.email.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtEmail">E-mail</label>
+          <input type="email" autocomplete="off" class="form-control" name="email" id="txtEmail" ng-model="user.email" required>
           <span class="help-block"><small>É preciso ser único no sistema</small></span>
         </div>
       </div>
@@ -30,20 +38,20 @@
     </div>
     <div class="row">
       <div class="col-md-3">
-        <div class="form-group">
-          <label for="txtUsername">Usuário</label>
-          <input type="text" autocomplete="off" class="form-control" name="username" id="txtUsername" ng-model="user.username" required>
+        <div class="form-group" ng-class="{'has-error': userForm.username.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtUsername">Usuário</label>
+          <input type="text" autocomplete="off" class="form-control" name="username" id="txtUsername" ng-model="user.username" required minlength="4">
         </div>
       </div>
       <div class="col-md-3">
-        <div class="form-group">
-          <label for="txtPassword">Senha</label>
+        <div class="form-group" ng-class="{'has-error': userForm.password.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtPassword">Senha</label>
           <input type="password" class="form-control" name="password" id="txtPassword" ng-model="user.password" ng-required="user.id == undefined">
         </div>
       </div>
       <div class="col-md-3">
-        <div class="form-group">
-          <label for="txtPasswordConfirmation">Confirmação de Senha</label>
+        <div class="form-group" ng-class="{'has-error': userForm.password_confirmation.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtPasswordConfirmation">Confirmação de Senha</label>
           <input type="password" class="form-control" name="password_confirmation" id="txtPasswordConfirmation" ng-model="user.password_confirmation" ng-required="user.id == undefined">
         </div>
       </div>
@@ -52,20 +60,20 @@
 
     <div class="row">
       <div class="col-md-2">
-        <div class="form-group">
-          <label for="txtCep">CEP</label>
-          <input type="text" autocomplete="off" class="form-control" name="zip" id="txtCep" ng-model="user.zip" required>
+        <div class="form-group" ng-class="{'has-error': userForm.zip.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtCep">CEP</label>
+          <input type="text" autocomplete="off" class="form-control" name="zip" id="txtCep" ng-model="user.zip" required ng-pattern="/^\d{5}-\d{3}$/" ng-change="endereco(userForm.zip)">
         </div>
       </div>
       <div class="col-md-5">
-        <div class="form-group">
-          <label for="txtCidade">Cidade</label>
+        <div class="form-group" ng-class="{'has-error': userForm.city.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtCidade">Cidade</label>
           <input type="text" autocomplete="off" class="form-control" name="city" id="txtCidade" ng-model="user.city" required>
         </div>
       </div>
       <div class="col-md-2">
-        <div class="form-group">
-          <label for="txtEstado">UF</label>
+        <div class="form-group" ng-class="{'has-error': userForm.state.$invalid && userForm.$submitted}">
+          <label class="control-label" for="txtEstado">UF</label>
           <input type="text" autocomplete="off" class="form-control" name="state" id="txtEstado" ng-model="user.state" required>
         </div>
       </div>
@@ -84,7 +92,7 @@
       </div>
     </div>
 
-    
+
 
 
 

@@ -12,12 +12,14 @@ angular.module('chetApp')
     '$scope',
     '$location',
     '$routeParams',
+    '$timeout',
     'AuthService',
     'UserService',
+    'EnderecoService',
     'PaginationService',
     // 'ChetModalService',
     // function ($scope, $location, $routeParams, auth, userService, modal) {
-    function ($scope, $location, $routeParams, auth, userService, paginationService) {
+    function ($scope, $location, $routeParams, $timeout, auth, userService, enderecoService, paginationService) {
 
     auth.isLoggedIn({attempt: 'users'}, function()
     {
@@ -36,7 +38,6 @@ angular.module('chetApp')
 
       $scope.prevPage = function()
       {
-        window.console.log($scope.currentPage);
         if($scope.currentPage > 1)
         {
           $scope.currentPage--;
@@ -52,7 +53,6 @@ angular.module('chetApp')
           $scope.fetch();
         }
       };
-
 
       $scope.setPage = function()
       {
@@ -83,18 +83,29 @@ angular.module('chetApp')
         $location.path('users');
       };
 
-      $scope.save = function()
+      $scope.save = function(form)
       {
-        userService.saveUser($scope.user).success(function(data)
+        if(form.$valid)
         {
-          if(data.success)
+          userService.saveUser($scope.user).success(function(data)
           {
-            $scope.user = {};
-            $scope.fetch();
-            $location.path('users');
-            // modal.close();
-          }
-        });
+            if(data.success)
+            {
+              $scope.user = {};
+              $scope.fetch();
+              $location.path('users');
+              // modal.close();
+            }
+          }).error(function(error)
+          {
+            $scope.serverSideValidationErrors = '<strong>Mensagem do servidor:</strong><br>';
+
+            for(var prop in error.errors)
+            {
+              $scope.serverSideValidationErrors += error.errors[prop] + '<br>';
+            }
+          });
+        }
       };
 
       $scope.new = function()
@@ -127,6 +138,17 @@ angular.module('chetApp')
         }
       };
 
+      $scope.gravatar = function(email)
+      {
+        userService.getGravatar(email).success(function(gravatar)
+        {
+          window.console.log(gravatar);
+        }).error(function(error)
+        {
+          window.console.log(error);
+        });
+      };
+
       $scope.fetch = function()
       {
         var config = {
@@ -152,6 +174,21 @@ angular.module('chetApp')
           );
 
         });
+      };
+
+      $scope.endereco = function(zipInput)
+      {
+        if(zipInput.$valid)
+        {
+          enderecoService.getEndereco($scope.user.zip, function(endereco)
+          {
+            if($scope.user !== undefined)
+            {
+              $scope.user.city = endereco.localidade;
+              $scope.user.state = endereco.uf;
+            }
+          });
+        }
       };
 
       var init = function()
