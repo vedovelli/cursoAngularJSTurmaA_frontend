@@ -66,6 +66,16 @@ angular.module('chetApp')
       var queryString = function()
       {
         $location.search('page', $scope.currentPage);
+
+        if($scope.filterCities !== undefined)
+        {
+          $location.search('cities', encodeURIComponent($scope.filterCities));
+        }
+
+        if($scope.filterOrderBy !== undefined)
+        {
+          $location.search('orderBy', encodeURIComponent($scope.filterOrderBy));
+        }
       };
 
       $scope.filterCitiesHandler = function()
@@ -73,15 +83,17 @@ angular.module('chetApp')
         if($scope.filterCities !== undefined)
         {
           $scope.currentPage = 1;
+          queryString();
           $scope.fetch();
         }
       };
 
       $scope.filterOrderByHandler = function()
       {
-        if($scope.orderBy !== undefined)
+        if($scope.filterOrderBy !== undefined)
         {
           $scope.currentPage = 1;
+          queryString();
           $scope.fetch();
         }
       };
@@ -204,6 +216,16 @@ angular.module('chetApp')
         if($routeParams.page)
         {
           $scope.currentPage = $routeParams.page;
+        }
+
+        if($routeParams.cities)
+        {
+          $scope.filterCities = decodeURIComponent($routeParams.cities).split(',');
+        }
+
+        if($routeParams.orderBy)
+        {
+          $scope.filterOrderBy = decodeURIComponent($routeParams.orderBy);
         }
 
         if($routeParams.id)

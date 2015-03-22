@@ -12,6 +12,10 @@ angular.module('chetApp')
 
       restrict: 'A',
 
+      scope: {
+        ngModel: '='
+      },
+
       link: function postLink(scope, element, attrs) {
 
         var config = {};
@@ -32,10 +36,24 @@ angular.module('chetApp')
               html += '<option value="'+item[attrs.property]+'">'+item[attrs.property]+'</option>';
             });
             element.html(html);
+
+            // Este watcher atende a situações que PRECISAM pedir dados de forma assincrona
+            scope.$watch('ngModel', function(newValue)
+            {
+              element.select2('val', newValue);
+            });
+
           });
         }
 
+        // Este watcher atende a situações que não precisam pedir dados de forma assincrona
+        scope.$watch('ngModel', function(newValue)
+        {
+          element.select2('val', newValue);
+        });
+
         element.select2(config);
+
       }
     };
   }]);
