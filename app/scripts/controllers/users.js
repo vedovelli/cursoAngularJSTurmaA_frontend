@@ -41,6 +41,7 @@ angular.module('chetApp')
         if($scope.currentPage > 1)
         {
           $scope.currentPage--;
+          queryString();
           $scope.fetch();
         }
       };
@@ -50,6 +51,7 @@ angular.module('chetApp')
         if($scope.currentPage < $scope.pagination.last_page)
         {
           $scope.currentPage++;
+          queryString();
           $scope.fetch();
         }
       };
@@ -57,7 +59,13 @@ angular.module('chetApp')
       $scope.setPage = function()
       {
         $scope.currentPage = this.page;
+        queryString();
         $scope.fetch();
+      };
+
+      var queryString = function()
+      {
+        $location.search('page', $scope.currentPage);
       };
 
       $scope.filterCitiesHandler = function()
@@ -193,6 +201,11 @@ angular.module('chetApp')
 
       var init = function()
       {
+        if($routeParams.page)
+        {
+          $scope.currentPage = $routeParams.page;
+        }
+
         if($routeParams.id)
         {
           userService.getUser($routeParams.id).success(function(data)

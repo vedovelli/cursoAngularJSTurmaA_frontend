@@ -18,8 +18,8 @@ angular
     'ngTouch',
     'ngFileUpload'
   ])
-  .constant('API_URL', 'http://cursoangular.vedovelli.com.br/api')
-  // .constant('API_URL', 'http://curso-angular-api.app/api')
+  // .constant('API_URL', 'http://cursoangular.vedovelli.com.br/api')
+  .constant('API_URL', 'http://curso-angular-api.app/api')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -28,7 +28,8 @@ angular
       })
       .when('/users', {
         templateUrl: 'views/users.html',
-        controller: 'UsersCtrl'
+        controller: 'UsersCtrl',
+        reloadOnSearch: false
       })
       .when('/users/new', {
         templateUrl: 'views/users-form.html',
